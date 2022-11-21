@@ -1,0 +1,147 @@
+body {
+	margin: 0;
+	background-color: rgb(33,37,45);
+	color: white;
+	font-size: 1.3em;
+}
+
+* { font-family: 'Prompt', sans-serif; }
+table { width: 100%; }
+label { display: block; margin: 10px 5px; }
+
+input {
+	width: 7rem;
+	font-size: 1rem;
+	background-color: rgba(255, 255, 255, 0.8);
+	border: 1px solid rgb(33,37,45);
+	text-align: center;
+}
+
+input:disabled {
+	background-color: rgba(255, 255, 255, 0.6);
+}
+
+input:enabled:hover {
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.6);
+}
+
+button {
+	font-size: 1rem;
+	padding: 2px 20px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: rgb(255, 255, 255, 0.5);
+}
+
+#musicIcon {
+	z-index: 1500;
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+}
+
+#musicIcon:hover {
+	cursor: pointer;
+	color: rgb(255, 255, 255, 0.5);
+}
+
+#musicIcon.disabled {
+	color: rgb(255, 255, 255, 0.3);
+}
+
+#pressAnyKeyOverlay,
+#gameoverOverlay,
+#ui {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+
+#pressAnyKeyOverlay{
+	visibility: hidden;
+	color: white;
+	background-color: rgba(0,0,0,0.8);
+	z-index: 2000;
+	top: 0;
+	left: 0
+}
+
+#gameoverOverlay {
+	color: white;
+	display: none;
+	background-color: rgba(0,0,0,0.9);
+}
+
+#ui {
+	z-index: 1000;
+	
+}
+
+#controls,
+#instructions,
+#game {
+	display: none;
+}
+
+#instructions {
+	padding: 0 20%;
+	font-size: 0.8em;
+}
+
+#instructions img {
+	width: 200px;
+	margin: 10px;
+	float: left;
+}
+
+#instructions td {
+	display: flex;
+	align-items: center;
+	text-align: left;
+
+}
+
+#controls img {
+	width: 9rem;
+}
+#timeCounter {
+    position: absolute;
+	top: 10px;
+    z-index: 100;
+    width: 100%;
+}
+
+#timeCounter circle {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+.tileCounter {
+    color: white;
+	position: absolute;
+	text-align: center;
+}
+
+.tileCounter.p1 {
+	bottom: 5%;
+	left: 5%;
+}
+
+.tileCounter.p2 {
+	top: 5%;
+	right: 5%;
+}
+
+.tileCounter p {
+	margin: 0;
+}
