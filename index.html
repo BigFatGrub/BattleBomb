@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>BattleBomb</title>
+	<link rel="icon" href="./img/icon.png">
+	<link rel="stylesheet" href='./css/index.css' />
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<span id='musicIcon' onclick="toggleAudio(false)">
+		<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-music-note"
+			viewBox="0 0 16 16">
+			<path d="M9 13c0 1.105-1.12 2-2.5 2S4 14.105 4 13s1.12-2 2.5-2 2.5.895 2.5 2z" />
+			<path fill-rule="evenodd" d="M9 3v10H8V3h1z" />
+			<path d="M8 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 13 2.22V4L8 5V2.82z" />
+		</svg>
+	</span>
+
+	<span id='ui'>
+		<span id='main'>
+			<h1>
+				
+				<img src='./img/p1.png' style="height: 1.5em; transform: translate(0, 0.4em);">
+				&#9679;
+				BattleBomb
+				&#9679;
+				<img src='./img/p2.png' style="height: 1.5em; transform: translate(0, 0.4em)">
+				
+			</h1>
+			<p style="	padding: 0 10%;
+			">
+				Every 15 seconds your actions get mirrored.
+				Place your bombs strategically and blast your opponent away!
+			</p>
+			<p><button onclick="next(1)">1 Player</button></p>
+			<p><button onclick="next(2)">2 Players</button></p>
+			<p><button onclick="showInstructions()">How to play</button></p>
+		</span>
+		<span id='controls'>
+			<table>
+				<tr>
+					<td>
+						<h2>Player 1</h2>
+						<img src='./img/p1.png'>
+						<table>
+							<tbody>
+								<tr>
+									<td>up:</td>
+									<td><input onfocus="setKeyBinding(this, p1Controls, 'up')" class='player1 up'></td>
+								</tr>
+								<tr>
+									<td>down:</td>
+									<td><input onfocus="setKeyBinding(this, p1Controls, 'down')" class='player1 down'>
+									</td>
+								</tr>
+								<tr>
+									<td>left:</td>
+									<td><input onfocus="setKeyBinding(this, p1Controls, 'left')" class='player1 left'>
+									</td>
+								</tr>
+								<tr>
+									<td>right:</td>
+									<td><input onfocus="setKeyBinding(this, p1Controls, 'right')" class='player1 right'>
+									</td>
+								</tr>
+								<tr>
+									<td>bomb:</td>
+									<td><input onfocus="setKeyBinding(this, p1Controls, 'bomb')" class='player1 bomb'>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+					<td>
+						<span style='margin-right: 10vw;'></span>
+					</td>
+					<td>
+						<h2>Player 2</h2>
+						<img src='./img/p2.png'>
+						<table>
+							<tbody>
+								<tr>
+									<td>up:</td>
+									<td><input onfocus="setKeyBinding(this, p2Controls, 'up')" class='player2 up'></td>
+								</tr>
+								<tr>
+									<td>down:</td>
+									<td><input onfocus="setKeyBinding(this, p2Controls, 'down')" class='player2 down'>
+									</td>
+								</tr>
+								<tr>
+									<td>left:</td>
+									<td><input onfocus="setKeyBinding(this, p2Controls, 'left')" class='player2 left'>
+									</td>
+								</tr>
+								<tr>
+									<td>right:</td>
+									<td><input onfocus="setKeyBinding(this, p2Controls, 'right')" class='player2 right'>
+									</td>
+								</tr>
+								<tr>
+									<td>bomb:</td>
+									<td><input onfocus="setKeyBinding(this, p2Controls, 'bomb')" class='player2 bomb'>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<br>
+			<button onclick="mainMenu()">Back</button>
+			<button id='startBtn'>Start</button>
+		</span>
+		<span id='instructions'>
+			<h2>How to play</h2>
+			<table>
+				<tbody>
+					<tr>
+						<td>
+							<img src='./img/img1.png'>
+							<p>
+								You are stuck in this arena and cannot cross to reach the other player.
+								But you can place bombs that destroys the tiles beneath your feet. How do you attack your target then?
+								Every 15 seconds your actions get mirrored to your opponent's field.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src='./img/img2.png'>
+							<p>
+								So place your bombs strategically to destroy your opponents tiles and win the game.
+								Bombs that collide in mid-air cancel each other out so you can anticipate your opponent's moves.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src='./img/img3.png'>
+							<p>
+								There are two ways you can win the match.
+								<br>
+								When there are no more possible moves and you cannot destroy any more tiles,
+								the player that has the largest island left wins.
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src='./img/img4.png'>
+							<p>
+								And when you manage to knock your opponent off the playing field by hitting him
+								with a bomb directly, you immediatly win the game!
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<button onclick="mainMenu()">Back</button>
+		</span>
+	</span>
+
+	<span id='gameoverOverlay'>
+		<span>
+			<h2>Game Over</h2>
+			<h3></h3>
+			<button onclick="mainMenu()">Main Menu</button>
+			<button id='restart'>Restart</button>
+		</span>
+	</span>
+
+	<span id='game'>
+		<span class='tileCounter p1'>Tiles:<p>0</p></span>
+		<span class='tileCounter p2'>Tiles:<p>0</p></span>
+		<svg id="timeCounter" height="60" width="60">
+			<circle stroke="white" stroke-width="4" fill="transparent" r="28" cx="50%" cy="50%" />
+		</svg>
+	</span>
+
+	<span id='pressAnyKeyOverlay'>Press any key...</span>
+
+
+	<script src="./js/three.js"></script>
+	<script src="./js/gltf.js"></script>
+	<script src="./js/skeleton.js"></script>
+	<script src="./js/stats.js"></script>
+	<script src="./js/game.js"></script>
+	<script src="./js/ui.js"></script>
+	<script src="./js/audio.js"></script>
+</body>
+</body>
+
+</html>
